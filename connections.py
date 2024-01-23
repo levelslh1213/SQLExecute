@@ -11,6 +11,7 @@ def getConnection ():
         database = config.get('ConnectionString', 'Database')
         userName = config.get('ConnectionString', 'UserName')
         password = cc.decrypt(config.get('ConnectionString', 'Password'), passwordKey)
+        sqlFileName = config.get('ConnectionString', 'SqlFileName')
         connectionString = (
             f"DRIVER=ODBC Driver 17 for SQL Server;"
             f"SERVER={serverAddress};"
@@ -21,4 +22,4 @@ def getConnection ():
     except cp.Error as e:
         return None, None
     
-    return connectionString
+    return connectionString, sqlFileName
