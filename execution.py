@@ -16,11 +16,14 @@ def execSQL():
     try:
         connection = db.connect(connectionString)
         exec = connection.cursor()
-        exec.execute(sql)
-        lines = exec.fetchall()
+        response = exec.execute(sql)
+        # print(response.rowcount)
+        response.commit()
 
-        for line in lines: 
-            print(str(line))
+        # lines = exec.fetchall()
+
+        # for line in lines: 
+        #     print(str(line))
     except (db.Error) as e:
         print(f"Erro ao executar script na base de dados: \n {e}")
         return "Error"
